@@ -15,14 +15,14 @@ http.createServer(async function(req,res){
       res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
       res.setHeader('Access-Control-Allow-Headers', req.header.origin);
       res.setHeader("Content-Type", "application/json");
-    const headers={
- 'Access-Control-Allow-Origin':'*',
-     "Access-Control-Expose-Headers": "Content-Length, X-JSON",
-      "Access-Control-Allow-Methods":"GET, POST, PATCH, PUT, DELETE, OPTIONS",
-       "Access-Control-Allow-Headers":"Content-Type, Authorization, Accept, Accept-Language, X-Authorization",
-     'Access-Control-Max-Age':'86400',
-     'Content-Type': 'application/json',
-    }
+//     const headers={
+//  'Access-Control-Allow-Origin':'*',
+//      "Access-Control-Expose-Headers": "Content-Length, X-JSON",
+//       "Access-Control-Allow-Methods":"GET, POST, PATCH, PUT, DELETE, OPTIONS",
+//        "Access-Control-Allow-Headers":"Content-Type, Authorization, Accept, Accept-Language, X-Authorization",
+//      'Access-Control-Max-Age':'86400',
+//      'Content-Type': 'application/json',
+//     }
     //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     //   res.setHeader ("Access-Control-Expose-Headers", "Content-Length, X-JSON");
     //   res.setHeader ("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
@@ -70,7 +70,7 @@ if(errors!=null){
     return
 }else{
     //response headers
-    res.writeHead(200,headers);
+    res.writeHead(200);
     //set the response
     res.write(JSON.stringify(newObject["id"]));
     //end the response
@@ -95,14 +95,14 @@ check=true;
         }
       })
       if(check){
-        res.writeHead(200,headers);
+        res.writeHead(200);
            //set the response
            res.write(JSON.stringify(id));
            //end the response
            res.end();   
            return  
     }else{
-        res.writeHead(200,headers);
+        res.writeHead(200);
            //set the response
            res.write(JSON.stringify("null"));
            //end the response
@@ -110,7 +110,7 @@ check=true;
             return 
     }
 }else {
-    res.writeHead(404,headers);
+    res.writeHead(404);
     res.end(JSON.stringify({ message: "Route not found" }));
 }
 
