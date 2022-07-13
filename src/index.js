@@ -47,7 +47,7 @@ check=true;
 if(check){
     res.writeHead(200,headers);
        //set the response
-       res.write(JSON.stringify("User already exist"));
+       res.write(JSON.stringify(null));
        //end the response
         res.end();
         return     
