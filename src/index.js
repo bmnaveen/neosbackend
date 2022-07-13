@@ -10,11 +10,11 @@ var User=fs.readFileSync("./user.json")
 var userObject=JSON.parse(User);
 
 http.createServer(async function(req,res){
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Request-Method', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
-      res.setHeader('Access-Control-Allow-Headers', req.header.origin);
-      res.setHeader("Content-Type", "application/json");
+    //   res.setHeader('Access-Control-Allow-Origin', '*');
+    //   res.setHeader('Access-Control-Request-Method', '*');
+    //   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
+    //   res.setHeader('Access-Control-Allow-Headers', req.header.origin);
+    //   res.setHeader("Content-Type", "application/json");
 //     const headers={
 //  'Access-Control-Allow-Origin':'*',
 //      "Access-Control-Expose-Headers": "Content-Length, X-JSON",
@@ -30,6 +30,11 @@ http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Max-Age','86400');
 var url=req.url;
 if(url==="/register" && req.method==="POST"){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Request-Method', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
+      res.setHeader('Access-Control-Allow-Headers', "*");
+      res.setHeader("Content-Type", "application/json");
     let data;
     for await (const chunk of req) {
        data=chunk;
@@ -79,6 +84,11 @@ if(errors!=null){
 }
      
 }else if(url==="/signin" && req.method==="POST"){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Request-Method', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
+      res.setHeader('Access-Control-Allow-Headers', "*");
+      res.setHeader("Content-Type", "application/json");
     let data;
     for await (const chunk of req) {
        data=chunk;
@@ -110,6 +120,11 @@ check=true;
             return 
     }
 }else {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Request-Method', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
+      res.setHeader('Access-Control-Allow-Headers', "*");
+      res.setHeader("Content-Type", "application/json");
     res.writeHead(404);
     res.end(JSON.stringify({ message: "Route not found" }));
 }
