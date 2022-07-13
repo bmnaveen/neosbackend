@@ -13,7 +13,7 @@ http.createServer(async function(req,res){
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Request-Method', '*');
       res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
-      res.setHeader('Access-Control-Allow-Headers', 'req.header.origin');
+      res.setHeader('Access-Control-Allow-Headers', req.header.origin);
       res.setHeader("Content-Type", "application/json");
 //     const headers={
 //  'Access-Control-Allow-Origin':'*',
