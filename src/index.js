@@ -101,7 +101,7 @@ check=true;
            res.end();   
            return  
     }else{
-        res.writeHead(200);
+        res.writeHead(200,headers);
            //set the response
            res.write(JSON.stringify("null"));
            //end the response
