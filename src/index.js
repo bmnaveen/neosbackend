@@ -15,14 +15,11 @@ http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
     //   res.setHeader('Access-Control-Allow-Headers', req.header.origin);
     //   res.setHeader("Content-Type", "application/json");
-//     const headers={
-//  'Access-Control-Allow-Origin':'*',
-//      "Access-Control-Expose-Headers": "Content-Length, X-JSON",
-//       "Access-Control-Allow-Methods":"GET, POST, PATCH, PUT, DELETE, OPTIONS",
-//        "Access-Control-Allow-Headers":"Content-Type, Authorization, Accept, Accept-Language, X-Authorization",
-//      'Access-Control-Max-Age':'86400',
-//      'Content-Type': 'application/json',
-//     }
+    const headers={
+			"Access-Control-Allow-Origin":"*", 
+			"Access-Control-Allow-Methods":"GET, POST, DELETE, PUT, PATCH", 
+			"Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept" 
+		}
     //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     //   res.setHeader ("Access-Control-Expose-Headers", "Content-Length, X-JSON");
     //   res.setHeader ("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
@@ -30,11 +27,7 @@ http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Max-Age','86400');
 var url=req.url;
 if(url==="/register" && req.method==="POST"){
-    res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Request-Method', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
-      res.setHeader('Access-Control-Allow-Headers', "*");
-      res.setHeader("Content-Type", "application/json");
+  
     let data;
     for await (const chunk of req) {
        data=chunk;
@@ -52,7 +45,7 @@ check=true;
       })
 
 if(check){
-    res.writeHead(200);
+    res.writeHead(200,headers);
        //set the response
        res.write(JSON.stringify("User already exist"));
        //end the response
@@ -75,7 +68,7 @@ if(errors!=null){
     return
 }else{
     //response headers
-    res.writeHead(200);
+    res.writeHead(200,headers);
     //set the response
     res.write(JSON.stringify(newObject["id"]));
     //end the response
@@ -84,11 +77,7 @@ if(errors!=null){
 }
      
 }else if(url==="/signin" && req.method==="POST"){
-    res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Request-Method', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
-      res.setHeader('Access-Control-Allow-Headers', "*");
-      res.setHeader("Content-Type", "application/json");
+  
     let data;
     for await (const chunk of req) {
        data=chunk;
@@ -105,7 +94,7 @@ check=true;
         }
       })
       if(check){
-        res.writeHead(200);
+        res.writeHead(200,headers);
            //set the response
            res.write(JSON.stringify(id));
            //end the response
@@ -120,12 +109,8 @@ check=true;
             return 
     }
 }else {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Request-Method', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET, PUT, PATCH');
-      res.setHeader('Access-Control-Allow-Headers', "*");
-      res.setHeader("Content-Type", "application/json");
-    res.writeHead(404);
+    
+    res.writeHead(404,{"Content-Type": "application/json"});
     res.end(JSON.stringify({ message: "Route not found" }));
 }
 
