@@ -149,7 +149,7 @@ check=true;
     let id = data["Id"]
     todoObject.forEach((gf)=>{
         if(gf["User"]==id){
-tempData.push(e)
+tempData.push(gf)
         }
     })
 
