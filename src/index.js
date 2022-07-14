@@ -2,7 +2,7 @@
 const crypto = require("crypto");
 const PORT = process.env.PORT || 5000
 const http=require("http");
-
+const nodemailer = require('nodemailer');
 const fs=require("fs");
 
 var User=fs.readFileSync("./user.json");
@@ -13,7 +13,30 @@ var todoObject=JSON.parse(Todo);
 
 var minutes = 1; 
 var timer = minutes * 60 * 1000;
+let transport = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "bmnavins@gmail.com",
+      pass: "Navi@1411"
+    }
+ });
 
+ const mailOptions = {
+    from: 'bmnavins@gmail.com', // Sender address
+    to: 'navinsmb@gmail.com', // List of recipients
+    subject: 'Node Mailer', // Subject line
+    text: 'Hello People!, Welcome to Bacancy!', // Plain text body
+};
+
+transport.sendMail(mailOptions, function(err, info) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(info);
+    }
+});
 setInterval(()=> {
     console.log("yes")
   }
