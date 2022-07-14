@@ -1,6 +1,6 @@
 
 const crypto = require("crypto");
-
+const querystring = require('urlSearchParams');
 const PORT = process.env.PORT || 5000
 const http=require("http");
 
@@ -141,16 +141,12 @@ check=true;
            return 
       }
 
-}else if(url==="/gettodo" && req.method==="GET"){
-let tempData=[];
-let data;
-    for await (const chunk of req) {
-       data=chunk;
-      }
-      let bod=JSON.parse(data);
+}else if(url==="/gettodo/:id" && req.method==="GET"){
 
-      let id=bod["Id"]
-console.log(id)
+    let parsed = url.parse(req.url);
+const query  = querystring.parse(parsed.query);
+
+console.log(query)
 //response headers
 res.writeHead(200,headers);
 
