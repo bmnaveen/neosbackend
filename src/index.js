@@ -178,8 +178,8 @@ res.write(JSON.stringify(tempData));
     let userid=data["userId"];
     let find=true;
     todoObject.forEach((gf,i)=>{
-        console.log(todoid,userid)
-        if(gf["User"]==userid&&gf["id"]==todoid){
+        
+        if(gf["id"]==todoid){
             todoObject.splice(i,1)
             find=false
         }
