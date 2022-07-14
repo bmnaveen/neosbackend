@@ -7,9 +7,9 @@ const http=require("http");
 const fs=require("fs");
 
 var User=fs.readFileSync("./user.json")
+var Todo=fs.readFileSync("./todo.json")
 var userObject=JSON.parse(User);
-var todo=fs.readFileSync("./todo.json")
-var todoObject=fs.readFile(todo)
+var todoObject=JSON.parse(Todo)
 http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Allow-Origin', '*');
     //   res.setHeader('Access-Control-Request-Method', '*');
