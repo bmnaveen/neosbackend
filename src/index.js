@@ -19,7 +19,8 @@ http.createServer(async function(req,res){
     const headers={
 			"Access-Control-Allow-Origin":"*", 
 			"Access-Control-Allow-Methods":"GET, POST, DELETE, PUT, PATCH", 
-			"Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept" 
+			"Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept" ,
+            "Content-Type": "application/json"
 		}
     //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     //   res.setHeader ("Access-Control-Expose-Headers", "Content-Length, X-JSON");
@@ -140,11 +141,19 @@ check=true;
            return 
       }
 
-}else if(url==="/gettodo/:id" && req.method==="GET"){
+}else if(url==="/gettodo" && req.method==="GET"){
 let tempData=[];
+let data;
+    for await (const chunk of req) {
+       data=chunk;
+      }
+      let bod=JSON.parse(data);
+
+      let id=bod["Id"]
+console.log(id)
 //response headers
 res.writeHead(200,headers);
-console.log(req.params.id)
+
 //set the response
 res.write();
 //end the response
