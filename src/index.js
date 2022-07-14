@@ -134,7 +134,7 @@ check=true;
           //response headers
           res.writeHead(200,headers);
           //set the response
-          res.write();
+          res.write(JSON.stringify(newObject["id"]));
           //end the response
            res.end();
            return 
