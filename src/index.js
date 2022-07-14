@@ -143,8 +143,9 @@ check=true;
     let data;
     for await (const chunk of req) {
        data=chunk;
+       data=JSON.parse(data)
       }
-    let id = JSON.parse(data)["Id"]
+    let id = data["Id"]
 
 
 
