@@ -14,7 +14,7 @@ var todoObject=JSON.parse(Todo);
 var minutes = 1; 
 var timer = minutes * 60 * 1000;
 
-setInterval(function() {
+setInterval(()=> {
     console.log("yes")
   }
 , timer);
