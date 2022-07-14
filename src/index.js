@@ -8,7 +8,8 @@ const fs=require("fs");
 
 var User=fs.readFileSync("./user.json")
 var userObject=JSON.parse(User);
-
+var todo=fs.readFileSync("./todo.json")
+var todoObject=fs.readFile(todo)
 http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Allow-Origin', '*');
     //   res.setHeader('Access-Control-Request-Method', '*');
@@ -108,6 +109,37 @@ check=true;
             res.end(); 
             return 
     }
+}else if(url==="/addtodo" && req.method==="POST"){
+    let data;
+    for await (const chunk of req) {
+       data=chunk;
+      }
+      let newObject=JSON.parse(data);
+      const id = crypto.randomBytes(16).toString("hex");
+      newObject["id"]=id;
+      
+            
+         let combineArray=[...todoObject,newObject];
+         let newArray=JSON.stringify(combineArray);
+         let errors=null
+         fs.writeFile("./user.json", newArray, (err) => {
+            //Error checking
+           if(err) errors=err
+             
+           });
+      if(errors!=null){
+          console.log(errors)
+          return
+      }else{
+          //response headers
+          res.writeHead(200,headers);
+          //set the response
+          res.write();
+          //end the response
+           res.end();
+           return 
+      }
+
 }else {
     
     res.writeHead(404,{"Content-Type": "application/json"});
