@@ -140,20 +140,25 @@ check=true;
       }
 
 }else if(url==="/gettodo" && req.method==="POST"){
+    let tempData=[];
     let data;
     for await (const chunk of req) {
        data=chunk;
        data=JSON.parse(data)
       }
     let id = data["Id"]
-
+    todoObject.forEach((gf)=>{
+        if(gf["User"]==id){
+tempData.push(e)
+        }
+    })
 
 
 //response headers
 res.writeHead(200,headers);
 
 //set the response
-res.write(JSON.stringify(id));
+res.write(JSON.stringify(tempData));
 //end the response
  res.end();
  return 
