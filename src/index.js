@@ -167,6 +167,50 @@ res.write(JSON.stringify(tempData));
  return 
 
 
+}else if(url==="/deletetodo" && req.method==="POST"){
+ 
+    let data;
+    for await (const chunk of req) {
+       data=chunk;
+       data=JSON.parse(data)
+      }
+    let todoid = data["todoId"];
+    let userid=data["userId"];
+    let find=true;
+    todoObject.forEach((gf,i)=>{
+        if(gf["User"]==userid&&gf["id"]==todoid){
+            todoObject.splice(i,1)
+            find=false
+        }
+    })
+    if(find){
+        //response headers
+     res.writeHead(200,headers);
+     //set the response
+     res.write(JSON.stringify("Acess Deniend"));
+     //end the response
+      res.end();
+      return 
+    }
+    let errors=null
+    fs.writeFile("./todo.json", JSON.stringify(todoObject), (err) => {
+       //Error checking
+      if(err) errors=err
+        
+      });
+ if(errors!=null){
+     console.log(errors)
+     return
+ }else{
+     //response headers
+     res.writeHead(200,headers);
+     //set the response
+     res.write(JSON.stringify("sucess"));
+     //end the response
+      res.end();
+      return 
+ }
+
 } else{
     
     res.writeHead(404,{"Content-Type": "application/json"});
