@@ -11,8 +11,8 @@ var userObject=JSON.parse(User);
 var todoObject=JSON.parse(Todo);
 
 
-var minutes = 1; 
-var timer = minutes * 60 * 1000;
+// var minutes = 1; 
+// var timer = minutes * 60 * 1000;
 let transport = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -37,10 +37,10 @@ transport.sendMail(mailOptions, function(err, info) {
       console.log(info);
     }
 });
-setInterval(()=> {
-    console.log("yes")
-  }
-, timer);
+// setInterval(()=> {
+//     console.log("yes")
+//   }
+// , timer);
 
 http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Allow-Origin', '*');
