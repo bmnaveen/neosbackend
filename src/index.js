@@ -140,9 +140,12 @@ check=true;
            return 
       }
 
-}else if(url==="/gettodo/id" && req.method==="GET"){
-
-    let parsed = url.parse(req.url);
+}else if(url==="/gettodo" && req.method==="GET"){
+    let data;
+    for await (const chunk of req) {
+       data=chunk;
+      }
+    let id = JSON.parse(data)["Id"]
 
 
 
@@ -150,7 +153,7 @@ check=true;
 res.writeHead(200,headers);
 
 //set the response
-res.write(JSON.stringify(parsed));
+res.write(JSON.stringify(id));
 //end the response
  res.end();
  return 
