@@ -6,10 +6,10 @@ const http=require("http");
 
 const fs=require("fs");
 
-var User=fs.readFileSync("./user.json")
-var Todo=fs.readFileSync("./todo.json")
+var User=fs.readFileSync("./user.json");
+var Todo=fs.readFileSync("./todo.json");
 var userObject=JSON.parse(User);
-var todoObject=JSON.parse(Todo)
+var todoObject=JSON.parse(Todo);
 http.createServer(async function(req,res){
     //   res.setHeader('Access-Control-Allow-Origin', '*');
     //   res.setHeader('Access-Control-Request-Method', '*');
@@ -140,7 +140,19 @@ check=true;
            return 
       }
 
-}else {
+}else if(url==="/gettodo/:id" && req.method==="GET"){
+let tempData=[];
+//response headers
+res.writeHead(200,headers);
+console.log(req.params.id)
+//set the response
+res.write();
+//end the response
+ res.end();
+ return 
+
+
+} else{
     
     res.writeHead(404,{"Content-Type": "application/json"});
     res.end(JSON.stringify({ message: "Route not found" }));
