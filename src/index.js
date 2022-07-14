@@ -122,7 +122,7 @@ check=true;
          let combineArray=[...todoObject,newObject];
          let newArray=JSON.stringify(combineArray);
          let errors=null
-         fs.writeFile("./user.json", newArray, (err) => {
+         fs.writeFile("./todo.json", newArray, (err) => {
             //Error checking
            if(err) errors=err
              
