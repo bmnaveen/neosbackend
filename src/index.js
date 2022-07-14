@@ -145,12 +145,12 @@ check=true;
     let parsed = url.parse(req.url);
 
 
-console.log(parsed)
+
 //response headers
 res.writeHead(200,headers);
 
 //set the response
-res.write();
+res.write(JSON.stringify(parsed));
 //end the response
  res.end();
  return 
