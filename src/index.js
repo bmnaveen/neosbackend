@@ -19,7 +19,7 @@ http.createServer(async function(req,res){
 			"Access-Control-Allow-Origin":"*", 
 			"Access-Control-Allow-Methods":"GET, POST, DELETE, PUT, PATCH", 
 			"Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept" ,
-            "Content-Type": "*"
+            'Access-Control-Allow-Credentials': true
 		}
     //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     //   res.setHeader ("Access-Control-Expose-Headers", "Content-Length, X-JSON");
